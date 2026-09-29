@@ -1,0 +1,6 @@
+{
+  "name": "Inspetor de Guias Lineares - Cálculo de Cota E & Emendas",
+  "description": "Sistema de cálculo metrológico, controle de tolerância em paquímetro e emissão de certificados para guias lineares com emendas (catálogo HIWIN e modelos industriais).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
