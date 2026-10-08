@@ -7,6 +7,7 @@ import React, { useState, useEffect } from 'react';
 import { OPConfig, InspectionSet } from './types';
 import { generateInitialSets, checkSetOverallStatus } from './utils/calculations';
 import { Header } from './components/Header';
+import { OpConfigPanel } from './components/OpConfigPanel';
 import { SpreadsheetView } from './components/SpreadsheetView';
 import { RailVisualizer } from './components/RailVisualizer';
 import { FresaView } from './components/FresaView';
@@ -63,7 +64,7 @@ export default function App() {
     return generateInitialSets(2, 20, 30);
   });
 
-  const [activeTab, setActiveTab] = useState<'spreadsheet' | 'diagram' | 'fresa'>('spreadsheet');
+  const [activeTab, setActiveTab] = useState<'fresa' | 'spreadsheet' | 'diagram'>('fresa');
   const [isCertificateOpen, setIsCertificateOpen] = useState(false);
   const [isHelpOpen, setIsHelpOpen] = useState(false);
   const [isExportOpen, setIsExportOpen] = useState(false);
@@ -301,7 +302,28 @@ export default function App() {
       {/* Main App Container */}
       <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 py-6 space-y-6">
         
+        {/* Top OP & Parameters Setup Bar (Only in fresa tab) */}
+        {activeTab === 'fresa' && (
+          <OpConfigPanel
+            config={config}
+            numberOfSets={sets.length}
+            onChangeConfig={handleConfigChange}
+            onChangeNumberOfSets={handleChangeNumberOfSets}
+            onResetDefaults={handleResetDefaults}
+          />
+        )}
+
         {/* Tab Content Views */}
+        {activeTab === 'fresa' && (
+          <FresaView
+            sets={sets}
+            config={config}
+            onUpdateConfig={handleConfigChange}
+            onUpdateSet={handleUpdateSet}
+            onChangeNumberOfSets={handleChangeNumberOfSets}
+          />
+        )}
+
         {activeTab === 'spreadsheet' && (
           <SpreadsheetView
             sets={sets}

@@ -16,8 +16,8 @@ import {
 } from 'lucide-react';
 
 interface HeaderProps {
-  activeTab: 'spreadsheet' | 'diagram' | 'fresa';
-  setActiveTab: (tab: 'spreadsheet' | 'diagram' | 'fresa') => void;
+  activeTab: 'fresa' | 'spreadsheet' | 'diagram';
+  setActiveTab: (tab: 'fresa' | 'spreadsheet' | 'diagram') => void;
   onOpenCertificate: () => void;
   onOpenHelp: () => void;
   onOpenExport: () => void;
@@ -67,6 +67,18 @@ export const Header: React.FC<HeaderProps> = ({
         {/* Zone 2: Navigation Tabs */}
         <nav className="flex items-center gap-1 bg-slate-950/80 p-1 rounded-lg border border-slate-800 text-xs font-medium">
           <button
+            onClick={() => setActiveTab('fresa')}
+            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap ${
+              activeTab === 'fresa'
+                ? 'bg-amber-600 text-white font-semibold shadow-sm'
+                : 'text-slate-400 hover:text-amber-300 hover:bg-slate-800/50'
+            }`}
+          >
+            <Stamp className="w-3.5 h-3.5 text-amber-400" />
+            <span>Fresa & Gravação</span>
+          </button>
+
+          <button
             onClick={() => setActiveTab('spreadsheet')}
             className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap ${
               activeTab === 'spreadsheet'
@@ -75,7 +87,7 @@ export const Header: React.FC<HeaderProps> = ({
             }`}
           >
             <Table className="w-3.5 h-3.5" />
-            <span>Matriz</span>
+            <span>Dimensional de Emenda</span>
           </button>
 
           <button
@@ -88,18 +100,6 @@ export const Header: React.FC<HeaderProps> = ({
           >
             <Eye className="w-3.5 h-3.5" />
             <span>Diagrama Técnico</span>
-          </button>
-
-          <button
-            onClick={() => setActiveTab('fresa')}
-            className={`flex items-center gap-1.5 px-3.5 py-1.5 rounded-md transition-all whitespace-nowrap ${
-              activeTab === 'fresa'
-                ? 'bg-amber-600 text-white font-semibold shadow-sm'
-                : 'text-slate-400 hover:text-amber-300 hover:bg-slate-800/50'
-            }`}
-          >
-            <Stamp className="w-3.5 h-3.5 text-amber-400" />
-            <span>Fresa & Gravação</span>
           </button>
         </nav>
 
