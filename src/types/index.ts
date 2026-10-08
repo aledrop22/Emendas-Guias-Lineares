@@ -29,6 +29,9 @@ export interface JointEnd {
   isLaserEngraved?: boolean;
   laserTimestamp?: string;
   laserOperator?: string;
+  isMillingMarked?: boolean; // Marcação manual na fresa
+  millingTimestamp?: string;
+  millingOperator?: string;
 }
 
 export interface InspectionSet {
@@ -50,6 +53,7 @@ export interface InspectionSet {
   serialNumber?: string;
   notes?: string;
   isLaserCompleted?: boolean;
+  isMillingCompleted?: boolean; // Marcações manuais na fresa concluídas
 }
 
 export type EngravingPattern = 'LETTERS_NUMBERS' | 'LETTERS_ONLY' | 'SEQUENTIAL_LETTERS_NUMBERS' | 'AA_BB' | 'A1_A2' | 'AB_CD' | 'NUMERIC';
